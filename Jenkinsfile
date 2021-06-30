@@ -4,8 +4,6 @@ node {
     }
 
     stage ('Build and Static Analysis') {
-        sh 'mvn -V -e clean verify -Dmaven.test.failure.ignore'
-
         recordIssues tools: [java(), javaDoc()], aggregatingResults: 'true', id: 'java', name: 'Java'
         recordIssues tool: errorProne(), healthy: 1, unhealthy: 20
         recordIssues tools: [checkStyle(pattern: 'target/checkstyle-result.xml'),
