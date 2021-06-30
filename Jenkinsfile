@@ -1,26 +1,17 @@
-#!/usr/bin/env groovy
-
-pipeline {
-
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
+node {
+    stage ('Checkout') {
+        checkout scm
     }
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm test'
-            }
-        }
+    stage ('Build and Static Analysis') {
+        sh 'mvn -V -e clean verify -Dmaven.test.failure.ignore'
+
+        recordIssues tools: [java(), javaDoc()], aggregatingResults: 'true', id: 'java', name: 'Java'
+        recordIssues tool: errorProne(), healthy: 1, unhealthy: 20
+        recordIssues tools: [checkStyle(pattern: 'target/checkstyle-result.xml'),
+            spotBugs(pattern: 'target/spotbugsXml.xml'),
+            pmdParser(pattern: 'target/pmd.xml'),
+            cpd(pattern: 'target/cpd.xml')],
+            qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]]
     }
 }
