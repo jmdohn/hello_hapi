@@ -2,14 +2,16 @@ node {
     stage ('Checkout') {
         checkout scm
     }
+    
+    stage ('Run Analysis'){
+        sh 'pmd-bin-6.36.0/bin/run.sh pmd -d . -R ./rulesets/pmd.xml -f xml -l apex -r target/pmd.xml'
+    }
 
     stage ('Build and Static Analysis') {
-        recordIssues tools: [java(), javaDoc()], aggregatingResults: 'true', id: 'java', name: 'Java'
-        recordIssues tool: errorProne(), healthy: 1, unhealthy: 20
-        recordIssues tools: [checkStyle(pattern: 'target/checkstyle-result.xml'),
-            spotBugs(pattern: 'target/spotbugsXml.xml'),
+        recordIssues tools: [
             pmdParser(pattern: 'target/pmd.xml'),
             cpd(pattern: 'target/cpd.xml')],
-            qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]]
+            qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]
+        ]
     }
 }
