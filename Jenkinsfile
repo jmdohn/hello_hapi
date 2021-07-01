@@ -3,7 +3,7 @@ node {
         checkout scm
     }
     
-    stages{
+    node {
         stage('Check PMD') {
             when{
                 expression { sh 'test -d pmd-bin-6.36.0 && echo true || echo false' == false}
