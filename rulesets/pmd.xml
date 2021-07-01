@@ -20,7 +20,7 @@
       </example>
     </rule>
 	
-	<rule name="ExcessiveParameterList" message="Methods with numerous parameters are a challenge to maintain, especially if most of them share the same datatype. These situations usually denote the need for new objects to wrap the numerous parameters." class="net.sourceforge.pmd.lang.apex.rule.complexity.ExcessiveParameterListRule">
+	<rule name="ExcessiveParameterList" message="Methods with numerous parameters are a challenge to maintain, especially if most of them share the same datatype. These situations usually denote the need for new objects to wrap the numerous parameters." class="net.sourceforge.pmd.lang.apex.rule.design.ExcessiveParameterListRule">
       <description>
       Methods with numerous parameters are a challenge to maintain, especially if most of them share the same datatype. These situations usually denote the need for new objects to wrap the numerous parameters.
       </description>
@@ -36,7 +36,7 @@ public void addPerson(int birthYear, int birthMonth, int birthDate, int height, 
       </example>
     </rule>
 	
-	 <rule name="ExcessiveClassLength" message="Excessive class file lengths are usually indications that the class may be burdened with excessive responsibilities that could be provided by external classes or functions. In breaking these methods apart the code becomes more managable and ripe for reuse." class="net.sourceforge.pmd.lang.apex.rule.complexity.ExcessiveClassLengthRule">
+	 <rule name="ExcessiveClassLength" message="Excessive class file lengths are usually indications that the class may be burdened with excessive responsibilities that could be provided by external classes or functions. In breaking these methods apart the code becomes more managable and ripe for reuse." class="net.sourceforge.pmd.lang.apex.rule.design.ExcessiveClassLengthRule">
       <description>
       Excessive class file lengths are usually indications that the class may be burdened with excessive responsibilities that could be provided by external classes or functions. In breaking these methods apart the code becomes more managable and ripe for reuse.
       </description>
