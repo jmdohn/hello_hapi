@@ -1,9 +1,9 @@
-node {
+pipeline{
     stage ('Checkout') {
         checkout scm
     }
     
-    node {
+    stages {
         stage('Check PMD') {
             when{
                 expression { sh 'test -d pmd-bin-6.36.0 && echo true || echo false' == false}
