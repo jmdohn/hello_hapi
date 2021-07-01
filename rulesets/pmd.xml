@@ -56,7 +56,7 @@ public class Foo { public void bar(Integer x, Integer y, Integer z) { if (x>y) {
       </example>
     </rule>
 	
-	<rule name="NcssMethodCount" message="This rule uses the NCSS (Non-Commenting Source Statements) algorithm to determine the number of lines of code for a given method. NCSS ignores comments, and counts actual statements. Using this algorithm, lines of code that are split are counted as one." class="net.sourceforge.pmd.lang.apex.rule.complexity.NcssMethodCountRule" language="apex">
+	<rule name="NcssMethodCount" message="This rule uses the NCSS (Non-Commenting Source Statements) algorithm to determine the number of lines of code for a given method. NCSS ignores comments, and counts actual statements. Using this algorithm, lines of code that are split are counted as one." class="net.sourceforge.pmd.lang.apex.rule.design.NcssMethodCountRule" language="apex">
       <description>
       This rule uses the NCSS (Non-Commenting Source Statements) algorithm to determine the number of lines of code for a given method. NCSS ignores comments, and counts actual statements. Using this algorithm, lines of code that are split are counted as one.
       </description>
