@@ -17,7 +17,6 @@ pipeline{
             steps{
                 recordIssues tools: [
                 pmdParser(pattern: 'pmd.xml'),
-                cpd(pattern: 'target/cpd.xml')],
                 qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]
             ]
             }
