@@ -14,11 +14,6 @@ pipeline{
         }
         
         stage ('Build and Static Analysis') {
-            when{
-                allOf{
-                    
-                }
-            }
             steps{
                 recordIssues tools: [
                 pmdParser(pattern: 'target/pmd.xml'),
