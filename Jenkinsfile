@@ -17,7 +17,7 @@ pipeline{
         stage ('Build and Static Analysis') {
             steps{
                 recordIssues tools: [
-                pmdParser(pattern: 'pmd.xml'),
+                pmdParser(pattern: 'pmd.xml')
                 qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]
             ]
             }
