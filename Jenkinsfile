@@ -1,12 +1,12 @@
 pipeline{
     agent any
-    stage ('Checkout') {
-        steps{
-            checkout scm
-        }
-    }
-    
     stages {
+        stage ('Checkout') {
+            steps{
+                checkout scm
+            }
+        }
+        
         stage('Check PMD') {
             when{
                 expression { sh 'test -d pmd-bin-6.36.0 && echo true || echo false' == false}
@@ -20,15 +20,15 @@ pipeline{
         stage('Run PMD') {
             sh './pmd-bin-6.36.0/bin/run.sh pmd -d . -R ./rulesets/pmd.xml -f xml -l apex -r target/pmd.xml'
         }
-    }
-
-    stage ('Build and Static Analysis') {
-        steps{
-            recordIssues tools: [
-            pmdParser(pattern: 'target/pmd.xml'),
-            cpd(pattern: 'target/cpd.xml')],
-            qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]
-        ]
+        
+        stage ('Build and Static Analysis') {
+            steps{
+                recordIssues tools: [
+                pmdParser(pattern: 'target/pmd.xml'),
+                cpd(pattern: 'target/cpd.xml')],
+                qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]
+            ]
+            }
         }
     }
 }
