@@ -4,7 +4,7 @@ node {
     }
     
     stage ('Run Analysis'){
-        sh 'pmd-bin-6.36.0/bin/run.sh pmd -d . -R ./rulesets/pmd.xml -f xml -l apex -r target/pmd.xml'
+        sh './pmd-bin-6.36.0/bin/run.sh pmd -d . -R ./rulesets/pmd.xml -f xml -l apex -r target/pmd.xml'
     }
 
     stage ('Build and Static Analysis') {
