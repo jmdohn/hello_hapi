@@ -1,6 +1,8 @@
 pipeline{
     stage ('Checkout') {
-        checkout scm
+        steps{
+            checkout scm
+        }
     }
     
     stages {
@@ -20,10 +22,12 @@ pipeline{
     }
 
     stage ('Build and Static Analysis') {
-        recordIssues tools: [
+        steps{
+            recordIssues tools: [
             pmdParser(pattern: 'target/pmd.xml'),
             cpd(pattern: 'target/cpd.xml')],
             qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]
         ]
+        }
     }
 }
