@@ -15,10 +15,10 @@ pipeline{
         
         stage ('Build and Static Analysis') {
             steps{
-                recordIssues tools: [
+                recordIssues(tools: [
                 pmdParser(pattern: 'pmd.xml'),
                 qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]
-            ]
+            ])
             }
         }
     }
