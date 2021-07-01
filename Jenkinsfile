@@ -9,7 +9,7 @@ pipeline{
         
         stage('Run PMD') {
             steps{
-                sh './pmd-bin-6.36.0/bin/run.sh pmd -d . -R ./rulesets/pmd.xml -f xml -no-cache > ./target/pmd.xml'
+                sh './pmd-bin-6.36.0/bin/run.sh pmd -d . -R ./rulesets/pmd.xml -r ./target/pmd.xml -f xml -no-cache '
             }
         }
         
