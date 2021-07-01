@@ -9,7 +9,7 @@ pipeline{
         
         stage('Check PMD') {
             steps {
-                if (sh 'test -d pmd-bin-6.36.0 && echo true || echo false' == 'false') {
+                if ((sh 'test -d pmd-bin-6.36.0 && echo true || echo false') == false) {
                     sh 'curl -L "https://github.com/pmd/pmd/download/pmd_releases%2F6.36.0/pmd-bin-6.36.0.zip" -o pmd-bin-6.36.0.zip'
                     sh 'unzip pmd-bin-6.36.0.zip'
                     sh 'rm pmd-bin-6.36.0.zip'
